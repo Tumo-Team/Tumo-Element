@@ -20,6 +20,10 @@
     z-index: 1001;
     overflow: hidden;
 
+    -webkit-box-shadow: 2px 0 6px rgba(0,21,41,.15);
+    box-shadow: 2px 0 6px rgba(0,21,41,.15);
+    background-color: #fff;
+
     // reset element-ui css
     .horizontal-collapse-transition {
       transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
@@ -35,6 +39,7 @@
 
     .el-scrollbar {
       height: 100%;
+      background-color: $menuBg;
     }
 
     &.has-logo {
@@ -68,26 +73,53 @@
       width: 100% !important;
     }
 
-    // menu hover
-    .submenu-title-noDropdown,
-    .el-submenu__title {
-      &:hover {
-        background-color: $menuHover !important;
-      }
-    }
-
-    .is-active>.el-submenu__title {
+    .is-active {
+      background-color: $subMenuActiveBg !important;
       color: $subMenuActiveText !important;
     }
+
+    .nest-menu .is-active:before {
+      content: " ";
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+      background: $subMenuActiveText;
+      position: absolute;
+    }
+    .nest-menu .el-menu-item:hover {
+      background-color: $subMenuActiveBg !important;
+      color: $subMenuActiveText !important;
+    }
+    .el-submenu__title:hover{
+      background-color: $subMenuActiveBg !important;
+      color: $subMenuActiveText !important;
+    }
+    .el-menu-item:hover{
+      background-color: $subMenuActiveBg !important;
+      color: $subMenuActiveText !important;
+    }
+    .router-link-active .is-active:before{
+      content: " ";
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+      background: #409eff;
+      position: absolute;
+    }
+    // .router-link-active .is-active{
+    //   background-color: $menuBg;
+    // }
+
+    // .is-active>.el-submenu__title {
+    //   color: $menuActiveText !important;
+    // }
 
     & .nest-menu .el-submenu>.el-submenu__title,
     & .el-submenu .el-menu-item {
       min-width: $sideBarWidth !important;
-      background-color: $subMenuBg !important;
-
-      &:hover {
-        background-color: $subMenuHover !important;
-      }
+      background-color: $subMenuBg;
     }
   }
 
@@ -194,14 +226,6 @@
     .sub-el-icon {
       margin-right: 12px;
       margin-left: -2px;
-    }
-  }
-
-  .nest-menu .el-submenu>.el-submenu__title,
-  .el-menu-item {
-    &:hover {
-      // you can use $subMenuHover
-      background-color: $menuHover !important;
     }
   }
 

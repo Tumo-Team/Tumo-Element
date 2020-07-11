@@ -1,14 +1,15 @@
 <template>
   <div class="login-container">
     <div class="login-weaper animated bounceInDown">
-      <div class="login-left">
-        <div class="login-time">{{time}}</div>
-        <img class="img" src="https://avuejs.com/images/logo.png" alt />
-        <p class="title">Vue Element Admin</p>
+      <div class="login-logo">
+        <img src="favicon.ico" alt />
+      </div>
+      <div class="login-tip">
+        Vue Element Admin
       </div>
       <div class="login-border">
         <div class="login-main">
-          <h4 class="login-title">Login</h4>
+          <h4 class="login-title"></h4>
           <el-form
             class="login-form"
             status-icon
@@ -25,57 +26,29 @@
                 auto-complete="off"
                 placeholder="Username"
               >
-                <i slot="prefix" class="icon-yonghu"></i>
+                <i slot="prefix" class="el-icon-user"></i>
               </el-input>
             </el-form-item>
             <el-form-item prop="password">
               <el-input
                 size="small"
                 @keyup.enter.native="handleLogin"
-                type="password"
+                :type="passwordType"
                 v-model="loginForm.password"
                 auto-complete="off"
                 placeholder="Password"
               >
-                <i class="el-icon-view el-input__icon" slot="suffix" @click="showPassword"></i>
-                <i slot="prefix" class="icon-mima"></i>
+                <i class="el-icon-view el-input__icon" slot="suffix" @click="showPwd"></i>
+                <i slot="prefix" class="el-icon-lock"></i>
               </el-input>
-            </el-form-item>
-            <el-form-item prop="code">
-              <el-row :span="24">
-                <el-col :span="16">
-                  <el-input
-                    size="small"
-                    @keyup.enter.native="handleLogin"
-                    :maxlength="code.len"
-                    v-model="loginForm.code"
-                    auto-complete="off"
-                    :placeholder="$t('login.code')"
-                  >
-                    <i slot="prefix" class="icon-yanzhengma"></i>
-                  </el-input>
-                </el-col>
-                <el-col :span="8">
-                  <div class="login-code">
-                    <span
-                      class="login-code-img"
-                      @click="refreshCode"
-                      v-if="code.type == 'text'"
-                    >{{code.value}}</span>
-                    <img :src="code.src" class="login-code-img" @click="refreshCode" v-else />
-                    <!-- <i class="icon-shuaxin login-code-icon" @click="refreshCode"></i> -->
-                  </div>
-                </el-col>
-              </el-row>
             </el-form-item>
 
             <el-form-item>
               <el-button
                 type="primary"
-                size="small"
                 @click.native.prevent="handleLogin"
                 class="login-submit"
-              >{{$t('login.submit')}}</el-button>
+              >登录</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -85,23 +58,19 @@
 </template>
 
 <script>
-import { validUsername } from "@/utils/validate";
-import SocialSign from "./components/SocialSignin";
-
 export default {
   name: "Login",
-  components: { SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error("Please enter the correct user name"));
+      if (value === '') {
+        callback(new Error("Please input username"));
       } else {
         callback();
       }
     };
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error("The password can not be less than 6 digits"));
+      if (value === '') {
+        callback(new Error("Please input password"));
       } else {
         callback();
       }
@@ -139,18 +108,12 @@ export default {
       immediate: true
     }
   },
-  created() {
-    // window.addEventListener('storage', this.afterQRScan)
-  },
   mounted() {
     if (this.loginForm.username === "") {
       this.$refs.username.focus();
     } else if (this.loginForm.password === "") {
       this.$refs.password.focus();
     }
-  },
-  destroyed() {
-    // window.removeEventListener('storage', this.afterQRScan)
   },
   methods: {
     checkCapslock(e) {
@@ -197,7 +160,6 @@ export default {
         return acc;
       }, {});
     }
-   
   }
 };
 </script>
