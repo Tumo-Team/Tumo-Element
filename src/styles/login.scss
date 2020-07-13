@@ -14,6 +14,14 @@
   -webkit-animation: animate-cloud 20s linear infinite;
   animation: animate-cloud 20s linear infinite;
 }
+@-webkit-keyframes animate-cloud{
+  0%{
+    background-position:600px 100%;
+  }
+  to{
+    background-position:0 100%;
+  }
+}
 .login-weaper {
   position: relative;
   margin: 0 auto;

@@ -18,7 +18,7 @@
       </el-tooltip>
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <span class="el-dropdown-link">
-          {{ name }}<i class="el-icon-arrow-down el-icon--right"></i>
+          {{ name }}<i class="el-icon-arrow-down el-icon--right" />
         </span>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/profile/index">
