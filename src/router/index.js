@@ -80,6 +80,19 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/system',
+    component: Layout,
+    redirect: '/user',
+    children: [
+      {
+        path: 'user',
+        component: () => import('@/views/user/index'),
+        name: '用户管理',
+        meta: { title: '用户管理', icon: 'el-icon-user', affix: true }
+      }
+    ]
+  },
+  {
     path: '/profile',
     component: Layout,
     redirect: '/profile/index',

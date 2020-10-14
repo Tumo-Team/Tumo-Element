@@ -22,3 +22,10 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function getUserList(page, query) {
+  return request({
+    url: '/vue-element-admin/user/list',
+    method: 'post'
+  })
+}
