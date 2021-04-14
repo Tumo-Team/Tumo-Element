@@ -1,6 +1,8 @@
 # Vue Element Admin
 
-> 基于`@PanJiaChen vue-element-admin`最新版
+> 基于`@PanJiaChen vue-element-admin`最新版 
+
+在线预览：[http://element.tycoding.cn](http://element.tycoding.cn)
 
 ## Features
 
